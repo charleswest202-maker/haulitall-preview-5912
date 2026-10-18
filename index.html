@@ -607,6 +607,33 @@
       .band { justify-content: center; }
       .band span { justify-content: center; text-align: center; }
     }
+
+    /* v4.5 — real iPhones: nothing wider than the screen, the menu never overlaps, the hero always fits */
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    :where(nav, header, main, section, article, aside, footer, figure, div, p, ul, ol, li, h1, h2, h3, h4, form, img, picture, video, iframe, table) { max-width: 100%; }
+    h1, h2, h3, h4 { overflow-wrap: anywhere; }
+    .hero-inner { min-width: 0; }
+    @media (max-width: 700px) {
+      /* Menu: wordmark left, links right; links shrink with the screen, then drop to a centered second row */
+      .site-nav { flex-wrap: wrap; justify-content: center; column-gap: clamp(4px, 2vw, 8px); }
+      .site-nav .nav-brand { flex: none; margin-right: auto; font-size: min(1.3rem, 5.4vw); }
+      .nav-links { flex: none; flex-wrap: wrap; justify-content: center; max-width: 100%; }
+      .site-nav a { white-space: nowrap; }
+      .sizes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .areas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .site-nav a { font-size: min(.82rem, 3.5vw); padding-inline: clamp(3px, 1.6vw, 6px); }
+      /* Hero: headline and same-day line sized by the screen width, so every line fits inside the side padding */
+      h1 { font-size: clamp(2rem, 14vw, 4.2rem); }
+      .sameday { font-size: clamp(1.15rem, 7vw, 1.7rem); }
+      .wordmark { font-size: min(1.6rem, 6.6vw); }
+      /* Buttons: side by side when they fit (Call takes the extra room), otherwise stacked full width, Call on top */
+      .hero .actions, .cta .actions { display: flex; flex-wrap: wrap; }
+      .hero .actions .button, .cta .actions .button { flex: 1 1 auto; }
+      .hero .actions .button:first-child, .cta .actions .button:first-child { flex-grow: 1000; }
+      .band { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
   </style>
 </head>
 <body id="top">
