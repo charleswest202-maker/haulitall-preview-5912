@@ -668,6 +668,86 @@
     @media (min-width: 701px) {
       .uses .service-row:last-child:nth-child(odd) { grid-column: 1 / -1; }
     }
+    /* v5.0 — 1. services strip: no item ever wraps; phones up to 520px show the five items as one centered column */
+    .band span { white-space: nowrap; }
+    @media (max-width: 520px) {
+      .band { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    }
+    /* v5.0 — 2. Get a Quote is an outline button everywhere (2px brand-red border, red text, no fill), so Call is the clear primary */
+    .button[data-temp="quote-form-pending"] { background: transparent; border-color: var(--red); color: var(--red); }
+    .button[data-temp="quote-form-pending"]:hover, .button[data-temp="quote-form-pending"]:focus-visible { background: var(--red); border-color: var(--red); color: #fff; }
+    /* on the dark sections the red text is a lighter tint of the brand red, so it keeps at least 4.5:1; the border stays brand red */
+    .hero .button[data-temp="quote-form-pending"], .sales .button[data-temp="quote-form-pending"], .cta .button[data-temp="quote-form-pending"], .call-bar .button[data-temp="quote-form-pending"] { color: #ff5a63; }
+    .hero .button[data-temp="quote-form-pending"]:hover, .sales .button[data-temp="quote-form-pending"]:hover, .cta .button[data-temp="quote-form-pending"]:hover, .call-bar .button[data-temp="quote-form-pending"]:hover,
+    .hero .button[data-temp="quote-form-pending"]:focus-visible, .sales .button[data-temp="quote-form-pending"]:focus-visible, .cta .button[data-temp="quote-form-pending"]:focus-visible, .call-bar .button[data-temp="quote-form-pending"]:focus-visible { color: #fff; }
+    /* over the photo the outline text gets the same dark letter shadow as the other hero text (still no fill) */
+    .hero .button[data-temp="quote-form-pending"] { text-shadow: 0 0 2px rgba(7,9,12,.94), 0 1px 4px rgba(7,9,12,.94), 0 0 12px rgba(7,9,12,.94); }
+    .hero .button[data-temp="quote-form-pending"]:hover, .hero .button[data-temp="quote-form-pending"]:focus-visible { text-shadow: none; }
+    @media (min-width: 1024px) {
+      .hero .actions .button:first-child { font-size: 18px; min-height: 60px; }
+    }
+    /* v5.0 — 3. Request this size is a red outline button; full card width on phones */
+    .size-card p { margin-bottom: 22px; }
+    .size-card a { margin-top: auto; padding: 8px 16px; align-items: center; justify-content: center; border: 2px solid var(--red); color: var(--red); text-decoration: none; }
+    .size-card a:hover, .size-card a:focus-visible { background: var(--red); color: #fff; }
+    .nowrap { white-space: nowrap; }
+    /* v5.0 — 4. size cards up to 520px: one card per row, number on the left, text on the right, button across the card */
+    @media (max-width: 520px) {
+      .sizes { grid-template-columns: 1fr; }
+      .size-card, .size-card:nth-child(n) { display: grid; grid-template-columns: 4.4rem minmax(0, 1fr); grid-template-areas: "num title" "num text" "btn btn"; column-gap: 16px; align-items: start; padding: 18px 16px; }
+      .size-number { grid-area: num; flex-direction: column; align-items: flex-start; gap: 4px; }
+      .size-card h3 { grid-area: title; margin-top: 2px; }
+      .size-card p { grid-area: text; margin: 6px 0 16px; }
+      .size-card a { grid-area: btn; width: 100%; align-self: stretch; margin-top: 0; padding: 8px 16px; }
+    }
+    /* v5.0 — 5 and 6. service areas sit right after the sizes and use the dark card treatment of the use cases; a 1px line in the content column where it meets the dark use cases */
+    .areas { background: var(--ink); color: #fff; }
+    .areas .section-inner { border-top: 0; position: relative; }
+    .areas .area-card, .areas .area-card:first-child, .areas .area-card:last-child { background: #1f2226; border: 1px solid #2c3036; }
+    .areas .area-name { color: #fff; }
+    .areas .section-inner::after { content: ""; position: absolute; left: 28px; right: 28px; bottom: 0; height: 1px; background: #2c3036; }
+    @media (max-width: 700px) {
+      .areas .section-inner::after { left: 22px; right: 22px; }
+    }
+    /* v5.0 — 7. truck photo: at most 900px wide, 4:3 crop that keeps the whole front wheel */
+    .gallery img { max-width: 900px; aspect-ratio: 4 / 3; object-position: 50% 26%; }
+    /* v5.0 — 8. sales list centered against the sales copy; one 22px side gutter on phones; footer lines up with the content column on desktop */
+    @media (min-width: 901px) {
+      .sales-grid { align-items: center; }
+      .sales-points { margin-top: 0; }
+    }
+    footer { padding-left: max(28px, calc((100vw - 1180px) / 2 + 28px)); padding-right: max(28px, calc((100vw - 1180px) / 2 + 28px)); }
+    @media (max-width: 700px) {
+      .site-nav { padding: 0 22px; }
+      footer { padding-left: 22px; padding-right: 22px; }
+      .about-copy { padding-left: 22px; padding-right: 22px; }
+    }
+    /* with the 22px gutter the one-row phone menu needs a slightly smaller wordmark; links keep 14px text and 44px tap size */
+    @media (max-width: 520px) {
+      .site-nav .nav-brand { font-size: min(1.3rem, 4.8vw); }
+      .site-nav .nav-links a { padding-inline: 2px; }
+    }
+    @media (max-width: 345px) {
+      .site-nav { padding: 0 22px; column-gap: 4px; }
+      .site-nav .nav-brand { font-size: 4.4vw; }
+      .site-nav .nav-links a { padding-inline: 0; letter-spacing: 0; }
+    }
+    /* v5.0 — 9. Order lands on the size cards (the size you request), Contact on the final call block */
+    #order { scroll-margin-top: 84px; }
+    /* v5.0 — 10. from 701px up, a red Call button at the right end of the sticky menu */
+    .site-nav .nav-call { display: none; }
+    @media (min-width: 701px) {
+      .nav-links { margin-left: auto; }
+      .site-nav .nav-call { display: inline-flex; align-self: center; min-width: 0; min-height: 44px; margin-left: 12px; padding: 8px 16px; border: 2px solid var(--red); background: var(--red); color: #fff; font-family: "Barlow", sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0; text-transform: none; white-space: nowrap; }
+      .site-nav .nav-call:hover, .site-nav .nav-call:focus-visible { background: var(--red-strong); border-color: var(--red-strong); }
+    }
+    @media (min-width: 701px) and (max-width: 1023px) {
+      .site-nav a { min-width: 0; padding-inline: 10px; }
+    }
+    /* v5.0 — hero text: with the brand tag gone the headline sits over a brighter part of the photo, so its letter shadow uses the desktop strength (.94) at every width, plus one tight layer */
+    .hero h1, .hero .sameday, .hero .hero-copy { text-shadow: 0 0 3px rgba(7,9,12,.94), 0 0 4px rgba(7,9,12,.94), 0 1px 4px rgba(7,9,12,.94), 0 2px 22px rgba(7,9,12,.94); }
+    /* v5.0 — 11. hours under the hero buttons (the final block already styles .hours) */
+    .hero .hours { margin: 14px 0 0; color: rgba(255,255,255,.9); font-weight: 700; text-shadow: 0 1px 2px rgba(7,9,12,.74), 0 2px 14px rgba(7,9,12,.74); }
   </style>
 </head>
 <body id="top">
@@ -679,12 +759,12 @@
       <a href="#order">Order</a>
       <a href="#contact">Contact</a>
     </div>
+    <a class="button nav-call" href="tel:2024505589">Call 202-450-5589</a>
   </nav>
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
-        <p class="wordmark">Haul It All DMV</p>
         <h1 id="hero-title">One call. Dumpster on the way.</h1>
         <p class="sameday">Same-day drop-off when you call before noon.</p>
         <p class="hero-copy">Serving the DMV since 2000.</p>
@@ -692,6 +772,7 @@
           <a class="button" href="tel:2024505589">Call 202-450-5589</a>
           <a class="button" href="tel:2024505589" data-temp="quote-form-pending">Get a Quote</a>
         </div>
+        <p class="hours">Mon–Sat, 9am–4pm</p>
       </div>
     </section>
 
@@ -710,7 +791,7 @@
           <p>Choose from 10, 20, 30, and 40 yard roll-off dumpsters. Tell us what you are clearing and we’ll help match the container to the job.</p>
         </div>
 
-        <div class="sizes">
+        <div class="sizes" id="order">
           <article class="size-card">
             <div class="size-number">10 <span>yard</span></div>
             <h3>Compact cleanup</h3>
@@ -731,12 +812,34 @@
           </article>
           <article class="size-card">
             <div class="size-number">40 <span>yard</span></div>
-            <h3>High-volume jobs</h3>
+            <h3><span class="nowrap">High-volume</span> jobs</h3>
             <p>Our largest option for major cleanouts, commercial work, and bulky material.</p>
             <a href="tel:2024505589" data-temp="quote-form-pending">Request this size</a>
           </article>
         </div>
 
+      </div>
+    </section>
+
+    <section class="areas" aria-labelledby="areas-title">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2 id="areas-title">Wherever the job is.</h2>
+        </div>
+        <div class="areas-grid">
+          <article class="area-card">
+            <h3 class="area-name">Washington, DC</h3>
+          </article>
+          <article class="area-card">
+            <h3 class="area-name">Montgomery County, MD</h3>
+          </article>
+          <article class="area-card">
+            <h3 class="area-name">Prince George’s County, MD</h3>
+          </article>
+          <article class="area-card">
+            <h3 class="area-name">Northern Virginia</h3>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -828,30 +931,8 @@
       </div>
     </section>
 
-    <section class="areas" aria-labelledby="areas-title">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2 id="areas-title">Wherever the job is.</h2>
-        </div>
-        <div class="areas-grid">
-          <article class="area-card">
-            <h3 class="area-name">Washington, DC</h3>
-          </article>
-          <article class="area-card">
-            <h3 class="area-name">Montgomery County, MD</h3>
-          </article>
-          <article class="area-card">
-            <h3 class="area-name">Prince George’s County, MD</h3>
-          </article>
-          <article class="area-card">
-            <h3 class="area-name">Northern Virginia</h3>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="cta" id="contact" aria-labelledby="cta-title">
-      <div class="cta-box" id="order">
+      <div class="cta-box">
         <div>
           <h2 id="cta-title">Ready for a dumpster?</h2>
           <p>Call for rental availability, hauling service, and container sales.</p>
@@ -861,6 +942,7 @@
             <a class="button" href="tel:2024505589">Call 202-450-5589</a>
             <a class="button" href="tel:2024505589" data-temp="quote-form-pending">Get a Quote</a>
           </div>
+          <p class="hours">Mon–Sat, 9am–4pm</p>
         </div>
       </div>
     </section>
