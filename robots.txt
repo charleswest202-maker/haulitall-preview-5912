@@ -1,0 +1,7 @@
+# Haul It All DMV — PREVIEW SETTING: block all crawlers while the site is on the preview address.
+# LAUNCH: replace this whole file with the two lines below (and remove the noindex meta tag from every page).
+# User-agent: *
+# Allow: /
+# Sitemap: https://haulitalldmv.com/sitemap.xml
+User-agent: *
+Disallow: /
