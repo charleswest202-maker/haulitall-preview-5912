@@ -674,15 +674,15 @@
       .band { display: flex; flex-direction: column; align-items: center; gap: 8px; }
     }
     /* v5.0 — 2. Get a Quote is an outline button everywhere (2px brand-red border, red text, no fill), so Call is the clear primary */
-    .button[data-temp="quote-form-pending"] { background: transparent; border-color: var(--red); color: var(--red); }
-    .button[data-temp="quote-form-pending"]:hover, .button[data-temp="quote-form-pending"]:focus-visible { background: var(--red); border-color: var(--red); color: #fff; }
+    .button[data-quote] { background: transparent; border-color: var(--red); color: var(--red); }
+    .button[data-quote]:hover, .button[data-quote]:focus-visible { background: var(--red); border-color: var(--red); color: #fff; }
     /* on the dark sections the red text is a lighter tint of the brand red, so it keeps at least 4.5:1; the border stays brand red */
-    .hero .button[data-temp="quote-form-pending"], .sales .button[data-temp="quote-form-pending"], .cta .button[data-temp="quote-form-pending"], .call-bar .button[data-temp="quote-form-pending"] { color: #ff5a63; }
-    .hero .button[data-temp="quote-form-pending"]:hover, .sales .button[data-temp="quote-form-pending"]:hover, .cta .button[data-temp="quote-form-pending"]:hover, .call-bar .button[data-temp="quote-form-pending"]:hover,
-    .hero .button[data-temp="quote-form-pending"]:focus-visible, .sales .button[data-temp="quote-form-pending"]:focus-visible, .cta .button[data-temp="quote-form-pending"]:focus-visible, .call-bar .button[data-temp="quote-form-pending"]:focus-visible { color: #fff; }
+    .hero .button[data-quote], .sales .button[data-quote], .cta .button[data-quote], .call-bar .button[data-quote] { color: #ff5a63; }
+    .hero .button[data-quote]:hover, .sales .button[data-quote]:hover, .cta .button[data-quote]:hover, .call-bar .button[data-quote]:hover,
+    .hero .button[data-quote]:focus-visible, .sales .button[data-quote]:focus-visible, .cta .button[data-quote]:focus-visible, .call-bar .button[data-quote]:focus-visible { color: #fff; }
     /* over the photo the outline text gets the same dark letter shadow as the other hero text (still no fill) */
-    .hero .button[data-temp="quote-form-pending"] { text-shadow: 0 0 2px rgba(7,9,12,.94), 0 1px 4px rgba(7,9,12,.94), 0 0 12px rgba(7,9,12,.94); }
-    .hero .button[data-temp="quote-form-pending"]:hover, .hero .button[data-temp="quote-form-pending"]:focus-visible { text-shadow: none; }
+    .hero .button[data-quote] { text-shadow: 0 0 2px rgba(7,9,12,.94), 0 1px 4px rgba(7,9,12,.94), 0 0 12px rgba(7,9,12,.94); }
+    .hero .button[data-quote]:hover, .hero .button[data-quote]:focus-visible { text-shadow: none; }
     @media (min-width: 1024px) {
       .hero .actions .button:first-child { font-size: 18px; min-height: 60px; }
     }
@@ -777,6 +777,35 @@
     .photo-slot { aspect-ratio: 4 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 10px; text-align: center; background: #f6f5f2; border: 2px dashed #6b6f75; color: var(--ink); font-weight: 700; font-size: .95rem; line-height: 1.25; }
     .photo-slot span:first-child { font-family: "Barlow Condensed", sans-serif; font-size: 1.3rem; text-transform: uppercase; }
     @media (max-width: 700px) { .photo-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; } .photo-slot { font-size: 14px; } .photo-slot span:first-child { font-size: 1.15rem; } }
+
+    /* v5.3 — quote form: a dark section right before the final call block; a 1px line in the content column where the two dark sections meet */
+    .quote { background: var(--ink); color: #fff; }
+    .quote .section-inner { position: relative; padding-top: 80px; padding-bottom: 80px; }
+    .quote .section-inner::after { content: ""; position: absolute; left: 28px; right: 28px; bottom: 0; height: 1px; background: #2c3036; }
+    .quote .section-head { margin-bottom: 32px; }
+    .quote h2:focus { outline: none; }
+    .quote :focus-visible { outline-color: var(--panel); }
+    .quote-form, .quote-done { max-width: 640px; }
+    .quote-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .quote-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .quote-field label { font-weight: 700; }
+    .quote-field input, .quote-field textarea { width: 100%; min-height: 52px; padding: 12px 14px; border: 2px solid #ffffff; border-radius: 0; background: #ffffff; color: var(--ink); font: inherit; font-size: 16px; }
+    .quote-field textarea { resize: vertical; }
+    .quote-field input:focus, .quote-field textarea:focus { outline: 3px solid var(--panel); outline-offset: 2px; }
+    .quote-check { display: flex; gap: 12px; align-items: flex-start; min-height: 44px; margin: 4px 0 24px; color: var(--on-dark); cursor: pointer; }
+    .quote-check input { flex: none; width: 24px; height: 24px; margin: 0; accent-color: var(--red); }
+    .quote-send { width: 100%; max-width: 320px; font: inherit; font-weight: 800; }
+    .quote-send:disabled { opacity: .7; cursor: wait; }
+    .quote-error { margin: 16px 0 0; color: #ff5a63; font-weight: 700; }
+    .quote-done p { margin: 0 0 20px; font-size: 1.25rem; font-weight: 700; }
+    .quote-done:focus { outline: none; }
+    .quote-trap { display: none; }
+    @media (max-width: 700px) {
+      .quote .section-inner { padding-top: 56px; padding-bottom: 56px; }
+      .quote .section-inner::after { left: 22px; right: 22px; }
+      .quote-row { grid-template-columns: 1fr; gap: 0; }
+      .quote-send { max-width: none; }
+    }
   </style>
 </head>
 <body id="top">
@@ -799,7 +828,7 @@
         <p class="hero-copy">Serving the DMV since 2002.</p>
         <div class="actions" id="hero-actions">
           <a class="button" href="tel:2024505589">Call 202-450-5589</a>
-          <a class="button" href="tel:2024505589" data-temp="quote-form-pending">Get a Quote</a>
+          <a class="button" href="#quote" data-quote>Get a Quote</a>
         </div>
         <p class="hours">Mon–Sat, 9am–4pm</p>
       </div>
@@ -843,25 +872,25 @@
             <div class="size-number">10 <span>yard</span></div>
             <h3>Compact cleanup</h3>
             <p>A practical choice for smaller cleanouts and projects with limited space.</p>
-            <a href="tel:2024505589" data-temp="quote-form-pending">Request this size</a>
+            <a href="#quote" data-quote data-size="10-yard dumpster">Request this size</a>
           </article>
           <article class="size-card">
             <div class="size-number">20 <span>yard</span></div>
             <h3>Renovation work</h3>
             <p>Well suited for remodeling debris, household cleanouts, and medium-size jobs.</p>
-            <a href="tel:2024505589" data-temp="quote-form-pending">Request this size</a>
+            <a href="#quote" data-quote data-size="20-yard dumpster">Request this size</a>
           </article>
           <article class="size-card">
             <div class="size-number">30 <span>yard</span></div>
             <h3>Construction debris</h3>
             <p>Extra room for larger renovations, property cleanups, and active job sites.</p>
-            <a href="tel:2024505589" data-temp="quote-form-pending">Request this size</a>
+            <a href="#quote" data-quote data-size="30-yard dumpster">Request this size</a>
           </article>
           <article class="size-card">
             <div class="size-number">40 <span>yard</span></div>
             <h3><span class="nowrap">High-volume</span> jobs</h3>
             <p>Our largest option for major cleanouts, commercial work, and bulky material.</p>
-            <a href="tel:2024505589" data-temp="quote-form-pending">Request this size</a>
+            <a href="#quote" data-quote data-size="40-yard dumpster">Request this size</a>
           </article>
         </div>
 
@@ -952,7 +981,7 @@
           <p>Need a container for your company, property, or growing fleet? Call or request a quote with the size and quantity you need and Haul It All will give you a sales quote.</p>
           <div class="actions">
             <a class="button" href="tel:2024505589">Call for a sales quote</a>
-            <a class="button" href="tel:2024505589" data-temp="quote-form-pending">Get a Quote</a>
+            <a class="button" href="#quote" data-quote>Get a Quote</a>
           </div>
         </div>
         <ul class="sales-points">
@@ -1002,6 +1031,45 @@
       </div>
     </section>
 
+    <section class="quote" id="quote" aria-labelledby="quote-title">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2 id="quote-title" tabindex="-1">Get a Quote</h2>
+        </div>
+        <form class="quote-form" id="quote-form" action="https://formsubmit.co/funnelandgrow@gmail.com" method="POST" data-ajax="https://formsubmit.co/ajax/funnelandgrow@gmail.com">
+          <input type="hidden" name="_subject" value="Haul It All DMV quote request" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <!-- spam trap: hidden from people; bots that fill it are dropped by FormSubmit -->
+          <div class="quote-trap" aria-hidden="true"><label for="q-honey">Leave this empty</label><input type="text" id="q-honey" name="_honey" tabindex="-1" autocomplete="off" /></div>
+          <div class="quote-row">
+            <div class="quote-field">
+              <label for="q-name">Name</label>
+              <input type="text" id="q-name" name="Name" autocomplete="name" required />
+            </div>
+            <div class="quote-field">
+              <label for="q-phone">Phone</label>
+              <input type="tel" id="q-phone" name="Phone" autocomplete="tel" inputmode="tel" pattern="[^0-9]*([0-9][^0-9]*){10,}" title="10-digit phone number" required />
+            </div>
+          </div>
+          <div class="quote-field">
+            <label for="q-need">What do you need?</label>
+            <textarea id="q-need" name="What do you need" rows="3" required></textarea>
+          </div>
+          <label class="quote-check" for="q-text">
+            <input type="checkbox" id="q-text" name="Texting OK" value="Yes" />
+            <span>Yes, you can text me about my request. Message and data rates may apply. Reply STOP to opt out.</span>
+          </label>
+          <button class="button quote-send" type="submit">Send my request</button>
+          <p class="quote-error" id="quote-error" role="alert" hidden>Sorry, that didn't send. Please call 202-450-5589.</p>
+        </form>
+        <div class="quote-done" id="quote-done" role="status" tabindex="-1" hidden>
+          <p>Got it. We'll call you shortly. Need it fast? Call 202-450-5589.</p>
+          <div class="actions"><a class="button" href="tel:2024505589">Call 202-450-5589</a></div>
+        </div>
+      </div>
+    </section>
+
     <section class="cta" id="contact" aria-labelledby="cta-title">
       <div class="cta-box">
         <div>
@@ -1011,7 +1079,7 @@
         <div>
           <div class="actions" id="cta-actions">
             <a class="button" href="tel:2024505589">Call 202-450-5589</a>
-            <a class="button" href="tel:2024505589" data-temp="quote-form-pending">Get a Quote</a>
+            <a class="button" href="#quote" data-quote>Get a Quote</a>
           </div>
           <p class="hours">Mon–Sat, 9am–4pm</p>
         </div>
@@ -1027,7 +1095,7 @@
 
   <div class="call-bar is-hidden" id="call-bar">
     <a class="button" href="tel:2024505589">Call</a>
-    <a class="button" href="tel:2024505589" data-temp="quote-form-pending">Get a Quote</a>
+    <a class="button" href="#quote" data-quote>Get a Quote</a>
   </div>
 
   <script>
@@ -1037,20 +1105,64 @@
       var bar = document.getElementById('call-bar');
       var heroActions = document.getElementById('hero-actions');
       var finalBlock = document.getElementById('contact');
+      var quoteBlock = document.getElementById('quote');
       var footer = document.querySelector('footer');
       if (!('IntersectionObserver' in window)) return;
-      var heroGone = false, endShowing = { final: false, footer: false };
+      var heroGone = false, endShowing = { final: false, footer: false, quote: false };
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
           if (e.target === heroActions) heroGone = !e.isIntersecting && e.boundingClientRect.top < 0;
           else if (e.target === finalBlock) endShowing.final = e.isIntersecting;
+          else if (e.target === quoteBlock) endShowing.quote = e.isIntersecting;
           else endShowing.footer = e.isIntersecting;
         });
-        bar.classList.toggle('is-hidden', !heroGone || endShowing.final || endShowing.footer);
+        bar.classList.toggle('is-hidden', !heroGone || endShowing.final || endShowing.footer || endShowing.quote);
       });
       io.observe(heroActions);
       io.observe(finalBlock);
       io.observe(footer);
+      io.observe(quoteBlock);
+    }());
+
+    (function () {
+      /* Quote form: every Get a Quote and Request this size button jumps here;
+         Request this size fills in its size. Sent to FormSubmit without leaving the page. */
+      var form = document.getElementById('quote-form');
+      var need = document.getElementById('q-need');
+      var title = document.getElementById('quote-title');
+      var done = document.getElementById('quote-done');
+      var error = document.getElementById('quote-error');
+      var send = form.querySelector('.quote-send');
+      document.querySelectorAll('[data-quote]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var size = b.getAttribute('data-size');
+          if (size) need.value = size;
+          setTimeout(function () { title.focus({ preventScroll: true }); }, 0);
+        });
+      });
+      if (!window.fetch || !window.FormData) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        var data = new FormData(form);
+        data.set('Texting OK', document.getElementById('q-text').checked ? 'Yes' : 'No');
+        send.disabled = true;
+        send.textContent = 'Sending…';
+        error.hidden = true;
+        fetch(form.getAttribute('data-ajax'), { method: 'POST', headers: { Accept: 'application/json' }, body: data })
+          .then(function (r) { return r.json(); })
+          .then(function (j) {
+            if (String(j.success) !== 'true') throw new Error(j.message || 'not sent');
+            form.hidden = true;
+            done.hidden = false;
+            done.focus();
+          })
+          .catch(function () {
+            send.disabled = false;
+            send.textContent = 'Send my request';
+            error.hidden = false;
+          });
+      });
     }());
   </script>
 </body>
