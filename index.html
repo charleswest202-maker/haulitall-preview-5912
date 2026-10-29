@@ -767,7 +767,7 @@
     @media (max-width: 520px) { .rules { margin-top: 28px; } .rules h3 { font-size: 1.35rem; } .rules li { padding: 16px 14px; } }
     /* v5.1 — 3. service-area sentence on the dark section */
     .areas .section-head p:not(.eyebrow) { color: var(--on-dark); }
-    /* v5.1 — 8. six clearly marked photo slots for Jacque's job photos, 4:3, lined up with the 900px truck photo */
+    /* v5.1, updated v6.2 — Jacque's four job photos in 4:3 boxes: the grid fills the content column, 2 by 2, left edge on the heading */
     .photo-slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; } /* v6.1 — no 900px cap, no centering: fills the content column, left edge on the heading */
     @media (min-width: 1024px) { .photo-slots { grid-template-columns: repeat(4, minmax(0, 1fr)); } } /* v5.6 — the 4 photos are the whole gallery: 2 by 2 up to tablet, 4 across on desktop */
     .photo-slot { aspect-ratio: 4 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 10px; text-align: center; background: #f6f5f2; border: 2px dashed #6b6f75; color: var(--ink); font-weight: 700; font-size: .95rem; line-height: 1.25; }
@@ -828,7 +828,7 @@
     }
     /* v5.4 — footer links to the privacy and terms pages (white, underlined, 44px tap height) */
     .foot-links { display: inline-flex; gap: 20px; flex-wrap: wrap; }
-    /* v6.0 — the four job photos are the whole gallery: 2 by 2 at every width (was 4 across from 1024px), centered, max 900px */
+    /* v6.0, updated v6.2 — the four job photos are the whole gallery: 2 by 2 at every width (was 4 across from 1024px); the grid fills the content column, left edge on the heading */
     @media (min-width: 1024px) { .photo-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </head>
