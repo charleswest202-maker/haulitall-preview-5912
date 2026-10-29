@@ -841,6 +841,8 @@
        2:1 on phones, min(70vh, 56.25vw) tall from 701px up; the photo row 27% down (just above the "Haul" door lettering) sits at the top edge, as much front wheel as fits below */
     .gallery img { width: 100vw; max-width: none; margin: 0 0 0 calc(50% - 50vw); height: min(70vh, 56.25vw); aspect-ratio: auto; object-fit: cover; object-position: 50% max(-20.25vw, calc(min(70vh, 56.25vw) - 75vw)); }
     @media (max-width: 700px) { .gallery img { height: 50vw; object-position: 50% max(-20.25vw, -25vw); } }
+    /* v6.0 — the four job photos are the whole gallery: 2 by 2 at every width (was 4 across from 1024px), centered, max 900px */
+    @media (min-width: 1024px) { .photo-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </head>
 <body id="top">
@@ -1044,42 +1046,34 @@
           <h2 id="fleet-title">Ready to roll</h2>
           <p>Haul It All equipment on the job.</p>
         </div>
-        <div class="gallery">
-          <figure>
-            <!-- v5.7: the red Mack cab is the big gallery photo (was the flag-truck door photo, now first in the row below) -->
-            <picture>
-              <source type="image/webp" srcset="img/red-mack-rolloff-truck-cab-400.webp 400w, img/red-mack-rolloff-truck-cab-800.webp 800w, img/red-mack-rolloff-truck-cab-1600.webp 1600w" sizes="100vw" />
-              <img src="img/red-mack-rolloff-truck-cab-800.jpg" srcset="img/red-mack-rolloff-truck-cab-400.jpg 400w, img/red-mack-rolloff-truck-cab-800.jpg 800w, img/red-mack-rolloff-truck-cab-1600.jpg 1600w" sizes="100vw" width="1600" height="1200" alt="Red Mack roll-off truck cab with Haul It All Rolloff lettering and 202-450-5589 on the door" loading="lazy" decoding="async" />
-            </picture>
-          </figure>
-        </div>
+        <!-- v6.0: no big photo; the four job photos are the whole gallery, 2 by 2 at every width -->
         <div class="photo-slots" aria-label="Haul It All job photos">
-          <!-- PHOTO SLOT 1: Jacque's job photo (v5.7 order) -->
+          <!-- PHOTO SLOT 1: Jacque's job photo (v6.0 order: white, red / white, red) -->
           <figure class="photo-slot has-photo" data-photo-slot="1">
             <picture>
-              <source type="image/webp" srcset="img/flag-truck-rolloff-cab-400.webp 400w, img/flag-truck-rolloff-cab-800.webp 800w, img/flag-truck-rolloff-cab-1320.webp 1320w" sizes="(max-width: 1023px) 50vw, 213px" />
-              <img src="img/flag-truck-rolloff-cab-800.jpg" srcset="img/flag-truck-rolloff-cab-400.jpg 400w, img/flag-truck-rolloff-cab-800.jpg 800w, img/flag-truck-rolloff-cab-1320.jpg 1320w" sizes="(max-width: 1023px) 50vw, 213px" width="800" height="600" alt="Side view of a Haul It All roll-off truck cab with an American flag design on the hood and Haul It All Rolloff lettering on the door" loading="lazy" decoding="async" />
+              <source type="image/webp" srcset="img/mack-rolloff-truck-with-dumpster-400.webp 400w, img/mack-rolloff-truck-with-dumpster-800.webp 800w, img/mack-rolloff-truck-with-dumpster-1600.webp 1600w" sizes="(max-width: 700px) calc(50vw - 28px), (max-width: 955px) calc(50vw - 36px), 442px" />
+              <img src="img/mack-rolloff-truck-with-dumpster-800.jpg" srcset="img/mack-rolloff-truck-with-dumpster-400.jpg 400w, img/mack-rolloff-truck-with-dumpster-800.jpg 800w, img/mack-rolloff-truck-with-dumpster-1600.jpg 1600w" sizes="(max-width: 700px) calc(50vw - 28px), (max-width: 955px) calc(50vw - 36px), 442px" width="800" height="600" alt="Front view of a white and red Mack roll-off truck with a dumpster on the back" loading="lazy" decoding="async" />
             </picture>
           </figure>
-          <!-- PHOTO SLOT 2: Jacque's job photo (v5.7 order) -->
+          <!-- PHOTO SLOT 2: Jacque's job photo (v6.0 order: white, red / white, red) -->
           <figure class="photo-slot has-photo" data-photo-slot="2">
             <picture>
-              <source type="image/webp" srcset="img/mack-rolloff-truck-with-dumpster-400.webp 400w, img/mack-rolloff-truck-with-dumpster-800.webp 800w, img/mack-rolloff-truck-with-dumpster-1600.webp 1600w" sizes="(max-width: 1023px) 50vw, 213px" />
-              <img src="img/mack-rolloff-truck-with-dumpster-800.jpg" srcset="img/mack-rolloff-truck-with-dumpster-400.jpg 400w, img/mack-rolloff-truck-with-dumpster-800.jpg 800w, img/mack-rolloff-truck-with-dumpster-1600.jpg 1600w" sizes="(max-width: 1023px) 50vw, 213px" width="800" height="600" alt="Front view of a white and red Mack roll-off truck with a dumpster on the back" loading="lazy" decoding="async" />
+              <source type="image/webp" srcset="img/red-mack-rolloff-truck-cab-400.webp 400w, img/red-mack-rolloff-truck-cab-800.webp 800w, img/red-mack-rolloff-truck-cab-1600.webp 1600w" sizes="(max-width: 700px) calc(50vw - 28px), (max-width: 955px) calc(50vw - 36px), 442px" />
+              <img src="img/red-mack-rolloff-truck-cab-800.jpg" srcset="img/red-mack-rolloff-truck-cab-400.jpg 400w, img/red-mack-rolloff-truck-cab-800.jpg 800w, img/red-mack-rolloff-truck-cab-1600.jpg 1600w" sizes="(max-width: 700px) calc(50vw - 28px), (max-width: 955px) calc(50vw - 36px), 442px" width="800" height="600" alt="Red Mack roll-off truck cab with Haul It All Rolloff lettering and 202-450-5589 on the door" loading="lazy" decoding="async" />
             </picture>
           </figure>
-          <!-- PHOTO SLOT 3: Jacque's job photo (v5.7 order) -->
+          <!-- PHOTO SLOT 3: Jacque's job photo (v6.0 order: white, red / white, red) -->
           <figure class="photo-slot has-photo" data-photo-slot="3">
             <picture>
-              <source type="image/webp" srcset="img/red-rolloff-truck-dumpster-loaded-400.webp 400w, img/red-rolloff-truck-dumpster-loaded-800.webp 800w, img/red-rolloff-truck-dumpster-loaded-1600.webp 1600w" sizes="(max-width: 1023px) 50vw, 213px" />
-              <img src="img/red-rolloff-truck-dumpster-loaded-800.jpg" srcset="img/red-rolloff-truck-dumpster-loaded-400.jpg 400w, img/red-rolloff-truck-dumpster-loaded-800.jpg 800w, img/red-rolloff-truck-dumpster-loaded-1600.jpg 1600w" sizes="(max-width: 1023px) 50vw, 213px" width="800" height="600" alt="Red roll-off truck with a red dumpster loaded on the back, parked on a dirt lot" loading="lazy" decoding="async" />
+              <source type="image/webp" srcset="img/haul-it-all-dumpster-on-rolloff-truck-400.webp 400w, img/haul-it-all-dumpster-on-rolloff-truck-800.webp 800w, img/haul-it-all-dumpster-on-rolloff-truck-1600.webp 1600w" sizes="(max-width: 700px) calc(50vw - 28px), (max-width: 955px) calc(50vw - 36px), 442px" />
+              <img src="img/haul-it-all-dumpster-on-rolloff-truck-800.jpg" srcset="img/haul-it-all-dumpster-on-rolloff-truck-400.jpg 400w, img/haul-it-all-dumpster-on-rolloff-truck-800.jpg 800w, img/haul-it-all-dumpster-on-rolloff-truck-1600.jpg 1600w" sizes="(max-width: 700px) calc(50vw - 28px), (max-width: 955px) calc(50vw - 36px), 442px" width="800" height="600" alt="Roll-off truck carrying a steel Haul It All dumpster, parked on a gravel lot" loading="lazy" decoding="async" />
             </picture>
           </figure>
-          <!-- PHOTO SLOT 4: Jacque's job photo (v5.7 order) -->
+          <!-- PHOTO SLOT 4: Jacque's job photo (v6.0 order: white, red / white, red) -->
           <figure class="photo-slot has-photo" data-photo-slot="4">
             <picture>
-              <source type="image/webp" srcset="img/haul-it-all-dumpster-on-rolloff-truck-400.webp 400w, img/haul-it-all-dumpster-on-rolloff-truck-800.webp 800w, img/haul-it-all-dumpster-on-rolloff-truck-1600.webp 1600w" sizes="(max-width: 1023px) 50vw, 213px" />
-              <img src="img/haul-it-all-dumpster-on-rolloff-truck-800.jpg" srcset="img/haul-it-all-dumpster-on-rolloff-truck-400.jpg 400w, img/haul-it-all-dumpster-on-rolloff-truck-800.jpg 800w, img/haul-it-all-dumpster-on-rolloff-truck-1600.jpg 1600w" sizes="(max-width: 1023px) 50vw, 213px" width="800" height="600" alt="Roll-off truck carrying a steel Haul It All dumpster, parked on a gravel lot" loading="lazy" decoding="async" />
+              <source type="image/webp" srcset="img/red-rolloff-truck-dumpster-loaded-400.webp 400w, img/red-rolloff-truck-dumpster-loaded-800.webp 800w, img/red-rolloff-truck-dumpster-loaded-1600.webp 1600w" sizes="(max-width: 700px) calc(50vw - 28px), (max-width: 955px) calc(50vw - 36px), 442px" />
+              <img src="img/red-rolloff-truck-dumpster-loaded-800.jpg" srcset="img/red-rolloff-truck-dumpster-loaded-400.jpg 400w, img/red-rolloff-truck-dumpster-loaded-800.jpg 800w, img/red-rolloff-truck-dumpster-loaded-1600.jpg 1600w" sizes="(max-width: 700px) calc(50vw - 28px), (max-width: 955px) calc(50vw - 36px), 442px" width="800" height="600" alt="Red roll-off truck with a red dumpster loaded on the back, parked on a dirt lot" loading="lazy" decoding="async" />
             </picture>
           </figure>
         </div>
