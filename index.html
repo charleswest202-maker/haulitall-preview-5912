@@ -837,6 +837,10 @@
     }
     /* v5.4 — footer links to the privacy and terms pages (white, underlined, 44px tap height) */
     .foot-links { display: inline-flex; gap: 20px; flex-wrap: wrap; }
+    /* v5.9 — big gallery photo full-bleed: 100vw edge to edge at every width, breaking out of the section container; cover crop, never stretched;
+       2:1 on phones, min(70vh, 56.25vw) tall from 701px up; the photo row 27% down (just above the "Haul" door lettering) sits at the top edge, as much front wheel as fits below */
+    .gallery img { width: 100vw; max-width: none; margin: 0 0 0 calc(50% - 50vw); height: min(70vh, 56.25vw); aspect-ratio: auto; object-fit: cover; object-position: 50% max(-20.25vw, calc(min(70vh, 56.25vw) - 75vw)); }
+    @media (max-width: 700px) { .gallery img { height: 50vw; object-position: 50% max(-20.25vw, -25vw); } }
   </style>
 </head>
 <body id="top">
@@ -1044,8 +1048,8 @@
           <figure>
             <!-- v5.7: the red Mack cab is the big gallery photo (was the flag-truck door photo, now first in the row below) -->
             <picture>
-              <source type="image/webp" srcset="img/red-mack-rolloff-truck-cab-400.webp 400w, img/red-mack-rolloff-truck-cab-800.webp 800w, img/red-mack-rolloff-truck-cab-1600.webp 1600w" sizes="(max-width: 700px) 100vw, 900px" />
-              <img src="img/red-mack-rolloff-truck-cab-800.jpg" srcset="img/red-mack-rolloff-truck-cab-400.jpg 400w, img/red-mack-rolloff-truck-cab-800.jpg 800w, img/red-mack-rolloff-truck-cab-1600.jpg 1600w" sizes="(max-width: 700px) 100vw, 900px" width="1600" height="1200" alt="Red Mack roll-off truck cab with Haul It All Rolloff lettering and 202-450-5589 on the door" loading="lazy" decoding="async" />
+              <source type="image/webp" srcset="img/red-mack-rolloff-truck-cab-400.webp 400w, img/red-mack-rolloff-truck-cab-800.webp 800w, img/red-mack-rolloff-truck-cab-1600.webp 1600w" sizes="100vw" />
+              <img src="img/red-mack-rolloff-truck-cab-800.jpg" srcset="img/red-mack-rolloff-truck-cab-400.jpg 400w, img/red-mack-rolloff-truck-cab-800.jpg 800w, img/red-mack-rolloff-truck-cab-1600.jpg 1600w" sizes="100vw" width="1600" height="1200" alt="Red Mack roll-off truck cab with Haul It All Rolloff lettering and 202-450-5589 on the door" loading="lazy" decoding="async" />
             </picture>
           </figure>
         </div>
