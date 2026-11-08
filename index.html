@@ -846,6 +846,8 @@
       .hia-js .hia-photo-text { opacity: 1; transform: none; transition: none; }
       .hia-photo-btn, .hia-photo-btn:hover { transform: none; box-shadow: none; transition: none; }
     }
+    /* Photo-text button and its two lines: phones and touch screens only (hover: none and pointer: coarse); hidden on computers */
+    @media not all and (hover: none) and (pointer: coarse) { .hia-photo-text { display: none; } }
   </style>
 </head>
 <body id="top">
