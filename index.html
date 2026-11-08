@@ -846,10 +846,6 @@
       .hia-js .hia-photo-text { opacity: 1; transform: none; transition: none; }
       .hia-photo-btn, .hia-photo-btn:hover { transform: none; box-shadow: none; transition: none; }
     }
-    /* QR for computers (pointer: fine): the photo-text button shows a QR of the same sms link instead of following it */
-    .hia-qr { margin-top: 12px; }
-    .hia-qr[hidden] { display: none; }
-    .hia-qr svg { display: inline-block; vertical-align: top; width: 140px; height: 140px; }
   </style>
 </head>
 <body id="top">
@@ -1329,25 +1325,6 @@
         });
       });
       for (var i = 0; i < blocks.length; i++) io.observe(blocks[i]);
-    }());
-
-    (function () {
-      /* QR for computers: with a fine pointer the photo-text button toggles a QR box instead of opening sms. Phones and touch: unchanged. */
-      if (!window.matchMedia || !window.matchMedia('(pointer: fine)').matches) return;
-      var H = 'fe6f3fc153906e9f8bb75f75dbaa52ec103507faaafe01a7005ef76d7e51e592d8dab2ac585b357604e36ad3be37d77312f68e4bff807ac43f892a305f911bae7f8dd4f19ee8bc2705f657fe0b988', N = 25, d = '';
-      for (var i = 0; i < N * N; i++) if (parseInt(H.charAt(i >> 2), 16) >> (3 - (i & 3)) & 1) d += 'M' + (i % N) + ' ' + Math.floor(i / N) + 'h1v1h-1z';
-      var svg = '<svg viewBox="-4 -4 33 33" role="img" aria-label="QR code: scan to text us a photo"><rect x="-4" y="-4" width="33" height="33" fill="#fff"/><path fill="#15171a" shape-rendering="crispEdges" d="' + d + '"/></svg>';
-      var btns = document.querySelectorAll('.hia-photo-btn');
-      for (var k = 0; k < btns.length; k++) (function (a, n) {
-        var box = document.createElement('div');
-        box.className = 'hia-qr'; box.id = 'hia-qr-' + n; box.hidden = true;
-        box.innerHTML = svg + '<p>Scan with your phone to text us a photo</p>';
-        a.parentNode.insertBefore(box, a.nextSibling);
-        a.setAttribute('aria-controls', box.id); a.setAttribute('aria-expanded', 'false');
-        a.addEventListener('click', function (e) {
-          e.preventDefault(); box.hidden = !box.hidden; a.setAttribute('aria-expanded', box.hidden ? 'false' : 'true');
-        });
-      })(btns[k], k + 1);
     }());
   </script>
 </body>
